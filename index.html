@@ -6,12 +6,12 @@
     <title data-i18n-title="City Wall Clean - Профессиональное удаление граффити и очистка фасадов в Латвии">City Wall Clean - Профессиональное удаление граффити и очистка фасадов в Латвии</title>
     <meta name="description" data-i18n-description="Профессиональная мойка фасадов, удаление граффити, чистка брусчатки в Риге. Уникальная технология DANSAND. Быстро, качественно, экологично." content="Профессиональная мойка фасадов, удаление граффити, чистка брусчатки в Риге. Уникальная технология DANSAND. Быстро, качественно, экологично.">
     <link rel="prefetch" href="index.html?skiploader=1">
-    
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 <style>
   .fade-out { opacity: 0; transition: opacity .35s ease; }
 </style>
 <script>
-  // Если пришли со страницы загрузки, включаем плавный фейд-ин
+
   (function () {
     const params = new URLSearchParams(location.search);
     if (params.has('skiploader')) {
@@ -29,9 +29,9 @@
 (function () {
   try {
     const params = new URLSearchParams(location.search);
-    if (params.has('skiploader')) return; // для отладки
+    if (params.has('skiploader')) return; 
 
-    // Проверяем, был ли уже загрузочный экран
+ 
     if (!sessionStorage.getItem('loaderShown')) {
       sessionStorage.setItem('loaderShown', '1');
       location.replace('loading.html');
@@ -56,9 +56,9 @@
     <header class="header">
         <div class="container">
             <div class="nav-brand">
-                <div class="logo">
-                    <span>C</span>
-                </div>
+               <a class="logo" href="#top" aria-label="City Wall Clean — Home">
+    <img src="images/logo.svg" alt="City Wall Clean">
+  </a>
                 <span class="brand-name" data-i18n="brand">City Wall Clean</span>
             </div>
             
@@ -266,9 +266,9 @@
       <span class="video-cat" data-filter="equipment" data-i18n="video.category.equipment">Оборудование</span>
     </div>
 
-    <!-- Сетка карточек -->
+    <!-- Video Cards -->
     <div class="videos-grid" id="videosGrid">
-      <!-- Пример карточек «Работы» -->
+      <!-- Video Works -->
       <article class="video-card" data-type="work">
         <button class="video-thumb" onclick="openVideo('images/Tallin VIDEO.mp4')" aria-label="Play video">
           <img src="images/Tallin VIDEO.mp4" alt="" loading="lazy">
@@ -299,7 +299,7 @@
         <button class="btn-ghost btn-watch" onclick="openVideo('images/20200619_120313.mp4')" data-i18n="video.watch">Смотреть</button>
       </article>
 
-      <!-- Пример карточек «Оборудование» -->
+      <!-- Video Equipment-->
       <article class="video-card" data-type="equipment">
         <button class="video-thumb" onclick="openVideo('images/In Side of HOOD.mp4')" aria-label="Play video">
           <img src="images/In Side of HOOD.mp4" alt="" loading="lazy">
@@ -374,7 +374,7 @@
           <div class="row">
             <i class="fa-solid fa-phone icon"></i>
             <div>
-              <a href="tel:+37120888803" class="link-strong">+371 20888803</a>
+              <a href="tel:+995557 60 48 68" class="link-strong">+995557 60 48 68</a>
               <div class="muted" data-i18n="contact.card.phone.note">Основной номер</div>
             </div>
           </div>
@@ -390,8 +390,8 @@
           <div class="row">
             <i class="fa-solid fa-location-dot icon"></i>
             <div>
-              <span data-i18n="contact.card.address.street">Цесвайнес 15A-211</span>
-              <div class="muted" data-i18n="contact.card.address.city">Рига, LV-1073, Латвия</div>
+              <span data-i18n="contact.card.address.street">Tbilisi. Varlam cherqezishvili qucha n 16</span>
+              <div class="muted" data-i18n="contact.card.address.city">Tbilisi</div>
             </div>
           </div>
         </div>
@@ -442,16 +442,16 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="logo">
-                        <span>C</span>
-                    </div>
+                   <a class="logo" href="#top" aria-ogoabel="City Wall Clean — Home">
+    <img src="images/logo.svg" alt="City Wall Clean">
+  </a>
                     <span class="brand-name" data-i18n="brand">City Wall Clean</span>
                 </div>
                 
-                <p class="footer-text" data-i18n="footer.copyright">© 2024 City Wall Clean. Все права защищены. Профессиональная очистка в Латвии.</p>
+                <p class="footer-text" data-i18n="footer.copyright">© 2025 City Wall Clean. Все права защищены</p>
                 
                 <div class="footer-contacts">
-                    <a href="tel:+37120888803">+371 20888803</a>
+                    <a href="tel:+995557 60 48 68">+995557 60 48 68</a>
                     <a href="mailto:info@cleanlines.lv">info@cleanlines.lv</a>
                 </div>
             </div>

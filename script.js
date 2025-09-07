@@ -270,8 +270,7 @@ const translations = {
     'contact.card.contact.title': 'Связаться с нами',
     'contact.card.phone.note': 'Основной номер',
     'contact.card.email.note': 'Email для заявок',
-    'contact.card.address.street': 'Цесвайнес 15A-211',
-    'contact.card.address.city': 'Рига, LV-1073, Латвия',
+
 
     'contact.hours.title': 'Рабочие часы',
     'contact.hours.weekdays.label': 'Понедельник – Пятница:',
@@ -362,8 +361,7 @@ const translations = {
     'contact.card.contact.title': 'დაგვიკავშირდით',
     'contact.card.phone.note': 'ძირითადი ნომერი',
     'contact.card.email.note': 'ზარებისთვის ელ.ფოსტა',
-    'contact.card.address.street': 'ცესვაინეს 15A-211',
-    'contact.card.address.city': 'რიგა, LV-1073, ლატვია',
+   
 
     'contact.hours.title': 'სამუშაო საათები',
     'contact.hours.weekdays.label': 'ორშაბათი – პარასკევი:',
@@ -455,8 +453,7 @@ const translations = {
     'contact.card.contact.title': 'Get in touch',
     'contact.card.phone.note': 'Primary number',
     'contact.card.email.note': 'Requests email',
-    'contact.card.address.street': 'Cesvaines 15A-211',
-    'contact.card.address.city': 'Riga, LV-1073, Latvia',
+   
 
     'contact.hours.title': 'Working hours',
     'contact.hours.weekdays.label': 'Monday – Friday:',
