@@ -1554,3 +1554,19 @@ html, body {
   position: absolute; right: 8px; top: 6px; z-index: 2; font-size: 28px;
   background: transparent; border: 0; color: #111; cursor: pointer;
 }
+.footer-madeby {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #a6afc3;
+}
+
+.footer-madeby a {
+  color: white; 
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-madeby a:hover {
+  text-decoration: underline;
+}
