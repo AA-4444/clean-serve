@@ -53,7 +53,7 @@
 </head>
 <body>
     <!-- Fixed Phone -->
-   <a href="tel:+995557 60 48 68" class="fixed-phone-btn" aria-label="Позвонить" data-i18n-aria="ui.call">
+   <a href="tel:+995557604868" class="fixed-phone-btn" aria-label="Позвонить" data-i18n-aria="ui.call">
   <i class="fa-solid fa-phone phone-icon" aria-hidden="true"></i>
 </a>
 
@@ -483,8 +483,57 @@
         </div>
     </div>
 
-         <script src="script.js"></script>
+         <script src="script.js" defer></script>
          
+<script defer>
+function submitForm(event) {
+  event.preventDefault();
 
+  const form = event.target;
+  const fd = new FormData(form);
+
+  const name    = (fd.get('name')    || '').trim();
+  const phone   = (fd.get('phone')   || '').trim();
+  const email   = (fd.get('email')   || '').trim();
+  const message = (fd.get('message') || '').trim();
+
+ 
+  const TO_EMAIL = 'info@citywall-clean.com'; 
+  const SITE_NAME = 'City Wall Clean';
+
+
+  const subject = `${SITE_NAME}: заявка от ${name || 'клиента'}`;
+
+
+  let body =
+    `Имя: ${name || '—'}\r\n` +
+    `Телефон: ${phone || '—'}\r\n` +
+    `Email: ${email || '—'}\r\n` +
+    `Сообщение:\r\n${message || '—'}\r\n\r\n` +
+    `Отправлено с сайта: ${location.href}`;
+
+
+  const MAX_BODY_LEN = 1600;
+  if (body.length > MAX_BODY_LEN) {
+    body = body.slice(0, MAX_BODY_LEN - 20) + '\r\n...[truncated]';
+  }
+
+  const href =
+    'mailto:' + encodeURIComponent(TO_EMAIL) +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+
+  
+  window.location.href = href;
+
+  
+  form.reset();
+  try {
+    alert((window.translations?.[window.currentLanguage]?.['form.success']) || 'Спасибо! Ваша заявка отправлена.');
+  } catch (_) {
+    alert('Спасибо! Ваша заявка отправлена.');
+  }
+}
+</script>
 </body>
 </html>

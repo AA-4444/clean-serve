@@ -804,3 +804,4 @@ function closeVideo(){
   }
   document.removeEventListener('keydown', onEscCloseVideo);
 }
+
