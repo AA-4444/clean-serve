@@ -1,5 +1,4 @@
 
-// =============== Ваш предыдущий код галереи (оставлен без урезаний) ===============
 (function(){
   const wrap  = document.querySelector('.gallery-carousel');
   const viewport = wrap?.querySelector('.gallery-viewport');
@@ -19,21 +18,27 @@
     return viewport.clientWidth - pl - pr;
   }
 
-  
+  // --- вычисляем реальные слайды до клонов
   const originals = Array.from(track.children);
+  const REAL_COUNT = originals.length;
+
+  // --- не инициализируем бесконечную карусель, если 0 или 1 слайд
+  if (REAL_COUNT < 2) {
+    // точек нет, клонов нет — одна картинка и точка
+    dotsWrap && (dotsWrap.innerHTML = '');
+    return;
+  }
+
+  // --- создаём клоны только по одному с каждой стороны
   const firstClone = originals[0].cloneNode(true);
-  const lastClone  = originals[originals.length-1].cloneNode(true);
+  const lastClone  = originals[REAL_COUNT-1].cloneNode(true);
   firstClone.classList.add('is-clone');
   lastClone.classList.add('is-clone');
 
-  
   track.prepend(lastClone);
   track.append(firstClone);
 
   let slides = Array.from(track.children);
-  const REAL_COUNT = originals.length;
-
-  
   let index = 1;
 
   // dots only for real slides
@@ -60,7 +65,7 @@
       const old = getComputedStyle(track).transition;
       track.style.transition = 'none';
       track.style.transform  = `translateX(${tx}px)`;
-      
+      // force reflow
       track.offsetHeight;
       track.style.transition = old;
     }else{
@@ -90,14 +95,22 @@
   prev.addEventListener('click', ()=>{ index--; goTo(index, true); restartAutoplay(); });
   next.addEventListener('click', ()=>{ index++; goTo(index, true); restartAutoplay(); });
 
-  // autoplay
+  // --- autoplay c остановкой при скрытии вкладки и взаимодействии
   let autoplayTimer = null;
   function startAutoplay(){
     stopAutoplay();
+    if (document.hidden) return; // не запускам в фоне
     autoplayTimer = setInterval(()=>{ index++; goTo(index, true); }, 3200);
   }
   function stopAutoplay(){ if(autoplayTimer){ clearInterval(autoplayTimer); autoplayTimer=null; } }
   function restartAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+  // стоп/старт по видимости документа
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
+  });
+
   wrap.addEventListener('mouseenter', stopAutoplay);
   wrap.addEventListener('mouseleave', startAutoplay);
   wrap.addEventListener('focusin', stopAutoplay);
@@ -116,7 +129,7 @@
     if(startX===null) return;
     const dx = e.clientX - startX;
     track.style.transform = `translateX(${startTx + dx}px)`;
-  });
+  }, {passive:true});
   ['pointerup','pointercancel','pointerleave'].forEach(ev=>{
     track.addEventListener(ev, (e)=>{
       if(startX===null) return;
@@ -148,7 +161,8 @@
 })();
 
 
-// ==================== Ваш функционал слайдера услуг (с безопасными проверками) ====================
+
+
 let currentSlide = 0;
 const totalSlides = 13;
 let currentLanguage = 'ru';
@@ -649,51 +663,82 @@ function submitForm(event) {
     alert(translations[currentLanguage]['form.success'] || 'Спасибо! Ваша заявка отправлена.');
 }
 
-// ========================== Auto-scroll carousel on mobile (с проверкой) ==========================
-let autoScrollTimer;
-if (window.innerWidth <= 768) {
-    autoScrollTimer = setInterval(() => {
-        moveCarousel(1);
-    }, 3000);
-    const servCar = document.getElementById('servicesCarousel');
-    if(servCar){
-      servCar.addEventListener('touchstart', () => {
-          clearInterval(autoScrollTimer);
-      });
+// ========================== Auto-scroll carousel on mobile  ==========================
+let autoScrollTimer = null;
+
+function startAutoScrollIfNeeded(){
+  
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (isMobile && !document.hidden) {
+    if (!autoScrollTimer) {
+      autoScrollTimer = setInterval(() => { moveCarousel(1); }, 3000);
     }
+  }
 }
+
+function stopAutoScroll(){
+  if (autoScrollTimer){
+    clearInterval(autoScrollTimer);
+    autoScrollTimer = null;
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  startAutoScrollIfNeeded();
+  const servCar = document.getElementById('servicesCarousel');
+  if (servCar){
+    // Любое взаимодействие пользователя — стоп
+    servCar.addEventListener('touchstart', stopAutoScroll, { passive: true });
+    servCar.addEventListener('pointerdown', stopAutoScroll, { passive: true });
+  }
+});
+
+// Стоп/старт при смене видимости вкладки
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopAutoScroll();
+  else startAutoScrollIfNeeded();
+});
+
+// Пересчёт условия на ресайзе 
+window.addEventListener('resize', () => {
+  stopAutoScroll();
+  startAutoScrollIfNeeded();
+});
+
 
 // Close mobile menu when clicking on links
 document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        document.getElementById('mobileMenu').classList.remove('active');
-    });
+  link.addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('active');
+  });
 });
 
 // Close modal when clicking outside
 document.getElementById('imageModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
+  if (e.target === this) closeModal();
 });
 
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') closeModal();
 });
 
 // lazy image load...
 if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src || img.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src || img.src;
+        img.classList.remove('lazy');
+        imageObserver.unobserve(img);
+      }
     });
-    document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+  });
+  document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
 }
- // ===== Videos: фильтр категорий =====
+
+// ===== Videos: фильтр категорий =====
 (function(){
   const grid = document.getElementById('videosGrid');
   const cats = document.querySelectorAll('.video-cat');
@@ -712,19 +757,18 @@ if ('IntersectionObserver' in window) {
     });
   });
 
-  // активируем «work» по умолчанию
+ 
   const first = document.querySelector('.video-cat[data-filter="work"]');
   if(first){ first.click(); }
 })();
 
-// ===== Video modal (отдельно от image modal) =====
+// ===== Video modal  =====
 function openVideo(src){
   const modal = document.getElementById('videoModal');
   const player = document.getElementById('modalVideo');
   if(!modal || !player) return;
 
-  // Если нужен YouTube — можно так:
-  // modal.querySelector('.modal-video').innerHTML = '<button class="close" onclick="closeVideo()">&times;</button><div class="ratio"><iframe src="https://www.youtube.com/embed/ID?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
+
 
   player.src = src;
   player.currentTime = 0;
