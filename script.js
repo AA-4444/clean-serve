@@ -165,7 +165,7 @@
 
 let currentSlide = 0;
 const totalSlides = 13;
-let currentLanguage = 'ru';
+let currentLanguage = 'ka';
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeCarousel();
@@ -239,14 +239,13 @@ const translations = {
     'hero.subtitle': 'Используем экологически безопасные технологии и современное оборудование для качественной очистки любых поверхностей',
     'hero.cta': 'Заказать очистку',
     'services.title': 'Наши услуги',
-    'services.subtitle': 'Профессиональная очистка поверхностей без воды, без химии, без высокого давления',
-    'services.facade.title': 'Очистка от граффити',
+    'services.subtitle': 'Удаление граффити и стойких загрязнений\n\nМы профессионально очищаем любые поверхности от:\n— граффити, надписей и следов маркера;\n— солевых потёков и ржавчины;\n— мха, грибка и биологических загрязнений;\n— прочих сложных пятен и налётов.\n\nРаботаем со всеми типами поверхностей:\nбетон • кирпич • штукатурка • мрамор • гранит • песчаник • камень • асфальт • плитка • стекло • пластик • металл — и не только.\n\nСовременные технологии очистки позволяют вернуть поверхности первозданный вид без повреждений и потери цвета.',    'services.facade.title': 'Очистка от граффити',
     'services.facade.price': 'от 80₾/м²',
-    'services.facade.description': 'Устранение граффити с любых поверхностей',
+    'services.facade.description': 'Удаление граффити, маркера и других загрязнений (солевые потёки, ржавчина, мох, грибок и т. п.). С любых поверхностей: бетон, кирпич, штукатурка, мрамор, гранит, песчаник, природный камень, асфальт, плитка, стекло, пластик, металлы и др.',
     
     'services.graffiti.title': 'Анти-граффити',
     'services.graffiti.price': 'от 12₾/м²',
-    'services.graffiti.description': 'Анти-граффити — защита поверхностей от нежелательных рисунков и надписей. ',
+'services.graffiti.description': 'Анти-граффити — защита поверхностей от нежелательных рисунков и надписей. Защитное покрытие создаёт прозрачный водоотталкивающий слой, который предотвращает поклейку объявлений и позволяет легко очищать поверхность от повторных граффити.',
     
     'equipment.title': 'Оборудование Tornado ACS',
     'equipment.subtitle': 'Вакуумная абразивная очистка: без воды, без химии, без высокого давления',
@@ -325,14 +324,14 @@ const translations = {
     'hero.subtitle': 'ჩვენ ვიყენებთ ეკოლოგიურად უსაფრთხო ტექნოლოგიებს და თანამედროვე აღჭურვილობას ნებისმიერი ზედაპირის ხარისხიანი გაწმენდისთვის',
     'hero.cta': 'გასუფთავების შეკვეთა',
     'services.title': 'ჩვენი სერვისები',
-    'services.subtitle': 'პროფესიონალური გაწმენდა წყლისა და ქიმიის გარეშე, დაბალი ზეწოლით',
+   'services.subtitle': 'გრაფიტის და ძლიერი დაბინძურების მოცილება\n\nჩვენ პროფესიონალურად ვწმენდთ ნებისმიერ ზედაპირს:\n— გრაფიტის, წარწერების და მარკერის კვალი;\n— მარილის ნადები და ჟანგი;\n— ხავსი, სოკო და ბიოლოგიური დაბინძურება;\n— სხვა რთული ლაქები და ნალექები.\n\nვმუშაობთ ყველა ტიპის ზედაპირზე:\nბეტონი • აგური • შელესილი ზედაპირი • მარმარილო • გრანიტი • ქვიშაქვა • ქვა • ასფალტი • კაფელი • მინა • პლასტიკი • ლითონი — და სხვა.\n\nთანამედროვე წმენდის ტექნოლოგიები საშუალებას იძლევა ზედაპირმა პირვანდელი იერი დაიბრუნოს დაზიანებისა და ფერის დაკარგვის გარეშე.',
    'services.facade.title': 'გრაფიტის გაწმენდა',
 'services.facade.price': '80₾-დან/მ²',
-'services.facade.description': 'გრაფიტის მოცილება ნებისმიერი ზედაპირიდან',
+'services.facade.description': 'გრაფიტის, მარკერის და სხვა დაბინძურებების მოცილება (მარილის ნადები, ჟანგი, ხავსი, სოკო და სხვ.). ნებისმიერი ზედაპირიდან: ბეტონი, აგური, შელესილი ზედაპირები, მარმარილო, გრანიტი, ქვიშაქვა, ბუნებრივი ქვა, ასფალტი, კაფელი, მინა, პლასტიკი, ლითონები და სხვა.',
 
 'services.graffiti.title': 'ანტი-გრაფიტი',
 'services.graffiti.price': '12₾-დან',
-'services.graffiti.description': 'ანტი-გრაფიტი — ზედაპირების დაცვა არასასურველი ნახატებისა და წარწერებისგან.',
+'services.graffiti.description': 'ანტი-გრაფიტი — ზედაპირის დაცვა არასასურველი ნახატებისა და წარწერებისგან. დამცავი საფარი ქმნის გამჭვირვალე, წყლისმიერ ფენას, რომელიც ხელს უშლის განცხადებების გაკვრას და ამარტივებს განმეორებითი გრაფიტის მოცილებას.',
 
     'equipment.title': 'Tornado ACS აღჭურვილობა',
     'equipment.subtitle': 'ვაკუუმური აბრაზიული წმენდა: წყლის, ქიმიის და მაღალი წნევის გარეშე',
@@ -412,14 +411,14 @@ const translations = {
     'hero.subtitle': 'We use environmentally safe technologies and modern equipment for quality cleaning of any surfaces',
     'hero.cta': 'Order Cleaning',
     'services.title': 'Our Services',
-    'services.subtitle': 'Professional surface cleaning without water, chemicals, or high pressure',
+  'services.subtitle': 'Graffiti and heavy contamination removal\n\nWe professionally clean all types of surfaces from:\n— graffiti, inscriptions, and marker traces;\n— salt efflorescence and rust;\n— moss, mold, and biological growth;\n— other stubborn stains and deposits.\n\nWe work with all kinds of surfaces:\nconcrete • brick • plaster • marble • granite • sandstone • stone • asphalt • tile • glass • plastic • metal — and more.\n\nModern cleaning technologies allow surfaces to regain their original appearance without damage or color loss.',
    'services.facade.title': 'Graffiti Removal',
 'services.facade.price': 'from 80₾/м²',
-'services.facade.description': 'Removal of graffiti from any surfaces',
+'services.facade.description': 'Removal of graffiti, marker and other contaminants (salt deposits/efflorescence, rust, moss, fungus, etc.). From all surfaces: concrete, brick, plaster, marble, granite, sandstone, natural stone, asphalt, tile, glass, plastic, metals, etc.',
 
 'services.graffiti.title': 'Anti-Graffiti',
 'services.graffiti.price': 'from 12₾/м²',
-'services.graffiti.description': 'Anti-graffiti — protection of surfaces from unwanted drawings and inscriptions.',
+'services.graffiti.description': 'Anti-graffiti — protection of surfaces from unwanted drawings and inscriptions. The protective coating creates a transparent, water-repellent layer that prevents poster sticking and allows for easy cleaning of repeated graffiti.',
 
     'equipment.title': 'Tornado ACS Equipment',
     'equipment.subtitle': 'Vacuum abrasive cleaning: no water, no chemicals, no high pressure',
@@ -492,7 +491,7 @@ const translations = {
 
 // ========================== Ядро переключателя языка ==========================
 function initializeLanguage() {
-    const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
+    const savedLang = localStorage.getItem('selectedLanguage') || 'ka';
     switchLanguage(savedLang);
 }
 
@@ -604,9 +603,9 @@ document.addEventListener('keydown', (e)=>{
 
 // стартовая синхронизация
 document.addEventListener('DOMContentLoaded', ()=>{
-  const saved = localStorage.getItem('selectedLanguage') || 'ru';
-  document.querySelectorAll('.lang-menu [data-lang]').forEach(el=>{
-    el.classList.toggle('is-active', el.dataset.lang === saved);
+ const saved = localStorage.getItem('selectedLanguage') || 'ka';
+ document.querySelectorAll('.lang-menu [data-lang]').forEach(el=>{
+   el.classList.toggle('is-active', el.dataset.lang === saved);
   });
 });
 
